@@ -4,18 +4,6 @@ require_relative './message.rb'
 
 SOAP_ENDPOINT = "https://soap.m4u.com.au/?wsdl"
 
-class DebugObserver
-
-  def notify(operation_name, builder, globals, locals)
-  	puts builder
-    nil
-  end
-
-end
-
-Savon.observers << DebugObserver.new
-
-
 class MessageMediaSoapClient
 
 	def initialize(user_id, password)
