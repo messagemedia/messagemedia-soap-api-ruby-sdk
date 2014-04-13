@@ -1,5 +1,5 @@
 
-require './mmsoap/soapClient.rb'
+require "messagemedia"
 
 USER_ID			= 	"<user id>";
 PASSWORD 		= 	"<password>";

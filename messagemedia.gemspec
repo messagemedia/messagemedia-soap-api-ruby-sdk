@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Messagemedia::VERSION
   spec.authors       = ["Chris Hawkins"]
   spec.email         = ["chris.hawkins@outlook.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = "Support for Ruby applications to integrate with the MessageMedia SOAP API"
+  spec.homepage      = "http://messagemedia.com.au/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
