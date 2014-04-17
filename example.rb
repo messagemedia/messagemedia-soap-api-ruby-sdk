@@ -1,8 +1,8 @@
 
 require "messagemedia"
 
-USER_ID			= 	"<user id>";
-PASSWORD 		= 	"<password>";
+USER_ID			= 	"<your username here>";
+PASSWORD 		= 	"<your password here>";
 FROM_NUMBER 	= 	"+61412345678";
 TO_NUMBER	 	= 	"+61412345678";
 
@@ -88,6 +88,80 @@ def check_user_info
 
 end
 
+def check_and_confirm_replies
+
+    puts "EXECUTING CHECK REPLIES..."
+
+    client = MessageMediaSoapClient.new(USER_ID, PASSWORD)
+    replies = client.check_replies
+
+    puts "Remaining replies: #{replies[:'@remaining']}"
+    puts "Replies returned: #{replies[:'@returned']}"
+
+    receipt_ids = []
+
+    if not replies[:replies].nil? then
+        replies[:replies].each do |reply|
+
+            puts reply
+
+            puts "Reply receipt id: #{reply[:receipt_id]}"
+            puts "Reply uid: #{reply[:uid]}"
+            puts "Reply received date time: #{reply[:received]}"
+            puts "Reply origin: #{reply[:origin]}"
+            puts "Reply content: #{reply[:content]}"
+            puts "Reply format: #{reply[:format]}"
+
+            receipt_id.push reply[:receipt_id]
+
+        end
+
+        puts "EXECUTING CONFIRM REPLIES..."
+        confirmation = client.confirm_replies(receipt_ids)
+        puts "Replies confirmed: #{confirmation[:'@confirmed']}"
+
+    end
+end
+
+def check_and_confirm_reports
+
+    puts "EXECUTING CHECK REPORTS..."
+
+    client = MessageMediaSoapClient.new(USER_ID, PASSWORD)
+    replies = client.check_reports
+
+    puts "Remaining replies: #{replies[:'@remaining']}"
+    puts "Replies returned: #{replies[:'@returned']}"
+
+    receipt_ids = []
+
+    if not replies[:replies].nil? then
+        replies[:replies].each do |reply|
+
+            puts reply
+
+            puts "Reply receipt id: #{reply[:receipt_id]}"
+            puts "Reply uid: #{reply[:uid]}"
+            puts "Reply received date time: #{reply[:received]}"
+            puts "Reply origin: #{reply[:origin]}"
+            puts "Reply content: #{reply[:content]}"
+            puts "Reply format: #{reply[:format]}"
+
+            receipt_id.push reply[:receipt_id]
+
+        end
+
+        puts "EXECUTING CONFIRM REPORTS..."
+        confirmation = client.confirm_replies(receipt_ids)
+        puts "Replies confirmed: #{confirmation[:'@confirmed']}"
+
+    end
+
+end
+
 check_user_info
 send_message
 send_multiple_messages
+check_and_confirm_replies
+check_and_confirm_reports
+

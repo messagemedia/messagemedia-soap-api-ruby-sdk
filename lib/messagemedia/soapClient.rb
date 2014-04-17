@@ -2,6 +2,17 @@
 require 'savon'
 require_relative './message.rb'
 
+# class DebugObserver
+
+#   def notify(operation_name, builder, globals, locals)
+#   	puts builder
+#     nil
+#   end
+
+# end
+
+# Savon.observers << DebugObserver.new
+
 SOAP_ENDPOINT = "https://soap.m4u.com.au/?wsdl"
 
 class MessageMediaSoapClient
@@ -57,6 +68,58 @@ class MessageMediaSoapClient
 
 		response = @client.call(:check_user, message: { :'api:authentication' => @credentials })
 		return response.body[:check_user_response][:result]
+
+	end
+
+	def check_replies
+
+		response = @client.call(:check_replies, message: {
+			:'api:authentication' => @credentials,
+			:'api:requestBody' => {}
+			})
+
+		return response.body[:check_replies_response][:result]
+
+	end
+
+	def confirm_replies(reply_ids)
+
+		body = {
+			:'api:replies' => reply_ids.map { |reply_id| { :'api:reply' => { :'@receiptId' => reply_id } } }
+		}
+
+		response = @client.call(:confirm_replies, message: {
+			:'api:authentication' => @credentials,
+			:'api:requestBody' => body
+			})
+
+		return response.body[:confirm_replies_replies][:result]
+
+	end
+
+	def check_reports
+
+		response = @client.call(:check_reports, message: {
+			:'api:authentication' => @credentials,
+			:'api:requestBody' => {}
+			})
+
+		return response.body[:check_reports_response][:result]
+
+	end
+
+	def confirm_reports(report_ids)
+
+		body = {
+			:'api:reports' => reply_ids.map { |report_id| { :'api:report' => { :'@receiptId' => report_id } } }
+		}
+
+		response = @client.call(:confirm_reports, message: {
+			:'api:authentication' => @credentials,
+			:'api:requestBody' => body
+			})
+		
+		return response.body[:confirm_reports_replies][:result]
 
 	end
 
