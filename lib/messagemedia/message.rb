@@ -1,38 +1,69 @@
+require_relative 'recipient.rb'
 
-require_relative './recipient.rb'
+module Messagemedia
 
-FORMAT_SMS = "SMS"
-FORMAT_VOICE = "voice"
+    FORMAT_SMS = "SMS"
+    FORMAT_VOICE = "voice"
 
-class Message
+    #
+    # This class is a light-weight wrapper around the message structure used
+    # by the MessageMedia SoapClient interface.
+    #
+    class Message
 
-	attr_accessor :sequence_number, :origin, :recipients, :content, :validity_period,
-				  :format, :delivery_report
+        attr_accessor :sequence_number, :origin, :recipients, :content,
+                      :validity_period, :format, :delivery_report
 
-	def initialize
-		@recipients = []
-		@deliveryReport = true
-		@validityPeriod = 1
-		@sequenceNumber = 0
-	end
+        #
+        # Initialize an empty Message object
+        #
+        # By default, delivery reports will be enabled, the validity
+        # period will be set to 10 minutes, and the message will be sent as
+        # an SMS.
+        #
+        def initialize
+            @recipients = []
+            @deliveryReport = true
+            @validityPeriod = 1
+            @sequenceNumber = 0
+        end
 
-	def add_recipient(id, number)
-		@recipients.push(Recipient.new(id, number))
-	end
+        #
+        # Add a recipient.
+        #
+        # An optional message ID (message_id) may be provided. This allows
+        # for the correlation of replies and delivery reports with messages
+        # that have been sent.
+        #
+        # A recipient number (recipient) must be provided.
+        #
+        def add_recipient(message_id, recipient)
+            @recipients.push(Recipient.new(message_id, recipient))
+        end
 
-	def to_api_hash
-		return {
-			:'@format' => @format,
-			:'@sequenceNumber' => @sequence_number,
-			:'api:origin' => @origin,
-			:'api:deliveryReport' => @delivery_report,
-			:'api:validityPeriod' => @validity_period,
-			:'api:recipients' => {
-				:attributes! => { recipient: @recipients.map { |r| r.id } },
-				:'api:recipient' => @recipients.map { |r| r.number }
-			},
-			:'api:content' => @content
-		}
-	end
+        #
+        # Return a hash that can be passed to the Savon SOAP library to
+        # represent a message.
+        #
+        def to_api_hash
 
-end
+            hash = {
+                :'@format' => @format,
+                :'@sequenceNumber' => @sequence_number,
+                :'api:deliveryReport' => @delivery_report,
+                :'api:validityPeriod' => @validity_period,
+                :'api:content' => @content,
+                :'api:recipients' => @recipients.map { |r| r.to_api_hash }
+            }
+
+            if not @origin.nil? then
+              hash[:'api:origin'] = @origin
+            end
+
+            return hash
+
+        end
+
+    end  # End class Message
+
+end  # End module Messagemedia
