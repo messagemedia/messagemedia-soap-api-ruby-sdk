@@ -20,7 +20,6 @@ class TestMessage < Test::Unit::TestCase
         expected_hash = {
             :'@format' => message.format,
             :'@sequenceNumber' => message.sequence_number,
-            :'api:origin' => message.origin,
             :'api:deliveryReport' => message.delivery_report,
             :'api:validityPeriod' => message.validity_period,
             :'api:content' => message.content,

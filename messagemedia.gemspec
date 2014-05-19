@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
   spec.version       = Messagemedia::VERSION
   spec.authors       = ["Chris Hawkins", "Tristan Penman"]
   spec.email         = ["chris.hawkins@outlook.com", "tristan@tristanpenman.com"]
-  spec.summary       = "Support for Ruby applications to integrate with the MessageMedia SOAP API"
+  spec.summary       = "Simple Ruby interface for the MessageMedia SOAP API"
+  spec.description   = "Support for Ruby applications to integrate with the MessageMedia SOAP API"
   spec.homepage      = "http://messagemedia.com.au/"
   spec.license       = "Apache"
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency 'rake', '~> 0'
   spec.add_development_dependency "savon", "~> 2.4"
 
 end
