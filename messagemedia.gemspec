@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["chris.hawkins@outlook.com", "tristan@tristanpenman.com"]
   spec.summary       = "Simple Ruby interface for the MessageMedia SOAP API"
   spec.description   = "Support for Ruby applications to integrate with the MessageMedia SOAP API"
-  spec.homepage      = "http://messagemedia.com.au/"
+  spec.homepage      = "http://www.messagemedia.com/"
   spec.license       = "Apache"
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

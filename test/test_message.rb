@@ -1,12 +1,12 @@
 require 'test/unit'
 
-require_relative '../lib/messagemedia/message'
+require_relative '../lib/messagemedia/soap/message'
 
 class TestMessage < Test::Unit::TestCase
 
     def test_to_api_hash
 
-        message = Messagemedia::Message.new
+        message = Messagemedia::SOAP::Message.new
 
         # First test receipient, with a custom message ID
         message_id_1 = 100

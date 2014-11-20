@@ -23,9 +23,9 @@ This library is not yet available as a pre-built Ruby gem, but you can build it 
 
     gem build messagemedia.gemspec
 
-This will produce a file called 'messagemedia-0.5.1.gem', which can then be installed:
+This will produce a file called 'messagemedia-0.5.2.gem', which can then be installed:
 
-    gem install messagemedia-0.5.1.gem
+    gem install messagemedia-0.5.2.gem
 
 You can run the unit tests using Rake:
 
@@ -39,25 +39,25 @@ Initialise the client using your MessageMedia username and password:
 
     require 'messagemedia'
 
-    client = Messagemedia::SoapClient.new(YOUR_USERNAME, YOUR_PASSWORD)
+    client = Messagemedia::SOAP::Client.new(YOUR_USERNAME, YOUR_PASSWORD)
 
 ### Send Messages
 
 To send a single message:
 
-    client.send_message(<FROM_NUMBER>, <TO_NUMBER>, <MESSAGE>, <MESSSAGE_ID>)
+    client.send_message(<TO_NUMBER>, <MESSAGE>, <MESSSAGE_ID>)
 
 To send multiple messages:
 
     # Construct the first Message object
-    message1 = Messagemedia::Message.new
+    message1 = Messagemedia::SOAP::Message.new
     message1.content = "Content of Message"
     message1.delivery_report = true
     message1.origin = "My Company"
     message1.add_recipient(FIRST_MESSAGE_ID, TO_NUMBER)
 
     # Construct the second Message object
-    message2 = Messagemedia::Message.new
+    message2 = Messagemedia::SOAP::Message.new
     message2.content = "Content of Message"
     message2.delivery_report = false
     message2.origin = "My Company"
@@ -73,7 +73,7 @@ Check out 'example.rb' in the 'bin' directory to see examples of how you can use
 
 We welcome contributions from our users. Contributing is easy:
 
-  1.  Fork this repo (to http://github.com/\<my-github-username\>/messagemedia_ruby)
+  1.  Fork this repo
   2.  Create your feature branch (`git checkout -b my-new-feature`)
   3.  Commit your changes (`git commit -am 'Add some feature'`)
   4.  Push to the branch (`git push origin my-new-feature`)

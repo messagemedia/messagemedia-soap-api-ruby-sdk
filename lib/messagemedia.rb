@@ -1,2 +1,5 @@
 require "messagemedia/version"
-require "messagemedia/soap_client"
+
+require "messagemedia/soap/recipient"
+require "messagemedia/soap/message"
+require "messagemedia/soap/client"
