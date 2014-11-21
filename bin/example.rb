@@ -162,6 +162,13 @@ end
 
 check_user_info
 send_message
-#send_multiple_messages            # Disabled by default
 check_and_confirm_replies
 check_and_confirm_reports
+
+# For example purposes, sending more than one message is unnecessary. However,
+# if you would like to test sending more than one message as part of a single
+# SOAP request, uncomment the following line of code:
+
+#send_multiple_messages
+
+
