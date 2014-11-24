@@ -11,25 +11,11 @@ The following actions have been implemented:
   * confirmReplies
   * confirmReports
 
-## Requirements
-
-The MessageMedia SOAP API requires a recent Ruby (at least 1.9.3). Other dependencies can be installed using bundler:
-
-    bundle install
-
 ## Installation
 
-This library is not yet available as a pre-built Ruby gem, but you can build it locally using the following command:
+The messagemedia-soap Gem can be installed from Rubygems:
 
-    gem build messagemedia.gemspec
-
-This will produce a file called 'messagemedia-0.6.0.gem', which can then be installed:
-
-    gem install messagemedia-0.6.0.gem
-
-You can run the unit tests using Rake:
-
-    rake test
+    gem install messagemedia-soap
 
 ## Usage
 
@@ -37,7 +23,7 @@ You can run the unit tests using Rake:
 
 Initialise the client using your MessageMedia username and password:
 
-    require 'messagemedia'
+    require 'messagemedia-soap'
 
     client = Messagemedia::SOAP::Client.new(YOUR_USERNAME, YOUR_PASSWORD)
 
