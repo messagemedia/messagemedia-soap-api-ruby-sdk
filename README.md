@@ -23,9 +23,9 @@ This library is not yet available as a pre-built Ruby gem, but you can build it 
 
     gem build messagemedia.gemspec
 
-This will produce a file called 'messagemedia-0.5.2.gem', which can then be installed:
+This will produce a file called 'messagemedia-0.6.0.gem', which can then be installed:
 
-    gem install messagemedia-0.5.2.gem
+    gem install messagemedia-0.6.0.gem
 
 You can run the unit tests using Rake:
 
