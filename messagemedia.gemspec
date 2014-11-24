@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.name          = "messagemedia"
   spec.version       = Messagemedia::VERSION
   spec.authors       = ["Chris Hawkins", "Tristan Penman"]
-  spec.email         = ["chris.hawkins@outlook.com", "tristan@tristanpenman.com"]
+  spec.email         = ["chris.hawkins@outlook.com", "tristan.penman@messagemedia.com.au"]
   spec.summary       = "Simple Ruby interface for the MessageMedia SOAP API"
   spec.description   = "Support for Ruby applications to integrate with the MessageMedia SOAP API"
   spec.homepage      = "http://www.messagemedia.com/"
