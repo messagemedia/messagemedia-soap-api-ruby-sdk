@@ -1,5 +1,6 @@
 require 'test/unit'
 
+require_relative '../lib/messagemedia/soap/recipient'
 require_relative '../lib/messagemedia/soap/message'
 
 class TestMessage < Test::Unit::TestCase
@@ -23,19 +24,20 @@ class TestMessage < Test::Unit::TestCase
             :'api:deliveryReport' => message.delivery_report,
             :'api:validityPeriod' => message.validity_period,
             :'api:content' => message.content,
-            :'api:recipients' => [
-                {
-                    :'api:recipient' => recipient_1,
-                    :'attributes!' => {
-                        :'api:recipient' => {
-                            'uid' => message_id_1
-                        }
+            :'api:recipients' => {
+                :'api:recipient' => [
+                    recipient_1,
+                    recipient_2
+                ],
+                :attributes! => {
+                    :'api:recipient' => {
+                        :uid => [
+                            message_id_1,
+                            nil
+                        ]
                     }
-                },
-                {
-                    :'api:recipient' => recipient_2
                 }
-            ]
+            }
         }
 
         assert_equal(expected_hash, message.to_api_hash)

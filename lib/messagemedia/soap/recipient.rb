@@ -24,29 +24,6 @@ module Messagemedia
                 @destination_number = destination_number
             end
 
-            #
-            # Return a hash that can be passed to the Savon SOAP library to
-            # represent a recipient. This will be converted to XML of the form:
-            #
-            #     <api:recipient uid="1">+61422000000</api:recipient>
-            #
-            # If the recipient does not have a non-nil ID, then the 'uid'
-            # attribute will be omitted.
-            #
-            def to_api_hash
-                if @message_id.nil? then
-                    {
-                        :'api:recipient' => @destination_number
-                    }
-                else
-                    {
-                        :'api:recipient' => @destination_number,
-                        :'attributes!' => {
-                            :'api:recipient' => { 'uid' => @message_id }
-                        }
-                    }
-                end
-            end
         end
     end
 end

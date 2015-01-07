@@ -54,7 +54,14 @@ module Messagemedia
                     :'api:deliveryReport' => @delivery_report,
                     :'api:validityPeriod' => @validity_period,
                     :'api:content' => @content,
-                    :'api:recipients' => @recipients.map { |r| r.to_api_hash }
+                    :'api:recipients' => {
+                        :'api:recipient' => @recipients.map { |r| r.destination_number },
+                        :attributes! => {
+                            :'api:recipient' => {
+                                :uid => @recipients.map { |r| r.message_id }
+                            }
+                        }
+                    }
                 }
 
                 if not @origin.nil? then
