@@ -49,10 +49,6 @@ module Messagemedia
             def to_api_hash
 
                 hash = {
-                    :'@format' => @format,
-                    :'@sequenceNumber' => @sequence_number,
-                    :'api:deliveryReport' => @delivery_report,
-                    :'api:validityPeriod' => @validity_period,
                     :'api:content' => @content,
                     :'api:recipients' => {
                         :'api:recipient' => @recipients.map { |r| r.destination_number },
@@ -63,6 +59,22 @@ module Messagemedia
                         }
                     }
                 }
+
+                if not @format.nil? then
+                  hash[:'@format'] = @format
+                end
+
+                if not @sequence_number.nil? then
+                  hash[:'@sequenceNumber'] = @sequence_number
+                end
+
+                if not @delivery_report.nil? then
+                  hash[:'api:deliveryReport'] = @delivery_report
+                end
+
+                if not @validity_period.nil? then
+                  hash[:'api:validityPeriod'] = @validity_period
+                end
 
                 if not @origin.nil? then
                   hash[:'api:origin'] = @origin
