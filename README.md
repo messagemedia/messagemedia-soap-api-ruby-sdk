@@ -1,6 +1,16 @@
 # MessageMedia Ruby SDK
 
-This library provides a simple interface for sending and receiving messages using the [MessageMedia SOAP API](http://files.message-media.com.au/docs/MessageMedia_Messaging_Web_Service.pdf).
+This library provides a simple interface for sending and receiving messages using the [MessageMedia SOAP API](http://www.messagemedia.com.au/wp-content/uploads/2013/05/MessageMedia_Messaging_Web_Service.pdf?eacfbb).
+
+If you have any issue using this sample code, or would like to report a defect, you could [create a new Issue](https://github.com/messagemedia/messagemedia-ruby/issues/new) in Github or [Contact us](http://www.messagemedia.com.au/contact-us).
+
+## Installation
+
+The messagemedia-soap Gem can be installed from Rubygems:
+
+    gem install messagemedia-soap
+
+## Usage
 
 The following actions have been implemented:
 
@@ -10,14 +20,6 @@ The following actions have been implemented:
   * checkReports
   * confirmReplies
   * confirmReports
-
-## Installation
-
-The messagemedia-soap Gem can be installed from Rubygems:
-
-    gem install messagemedia-soap
-
-## Usage
 
 ### Initialise the client
 
