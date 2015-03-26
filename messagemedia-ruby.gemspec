@@ -3,14 +3,13 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require File.dirname(__FILE__) + '/lib/messagemedia/soap/version'
+require File.dirname(__FILE__) + '/lib/messagemedia/version'
 
 Gem::Specification.new do |spec|
-
-  spec.name          = "messagemedia-soap"
-  spec.version       = Messagemedia::SOAP::VERSION
-  spec.authors       = ['Chris Hawkins', 'Tristan Penman']
-  spec.email         = ['chris.hawkins@outlook.com', 'tristan.penman@messagemedia.com.au']
+  spec.name          = 'messagemedia-ruby'
+  spec.version       = Messagemedia::VERSION
+  spec.authors       = ['Tristan Penman']
+  spec.email         = ['tristan.penman@messagemedia.com.au']
   spec.summary       = 'Simple Ruby interface for the MessageMedia SOAP API'
   spec.description   = 'Support for Ruby applications to integrate with the MessageMedia SOAP API'
   spec.homepage      = 'http://www.messagemedia.com/'

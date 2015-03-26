@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "messagemedia-soap"
+require "messagemedia-ruby"
 
 USER_ID            = "<your username>";        # Your username goes here
 PASSWORD           = "<your password>";        # Your password goes here

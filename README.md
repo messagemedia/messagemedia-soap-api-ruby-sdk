@@ -7,9 +7,9 @@ This library provides a simple interface for sending and receiving messages usin
 If you have any issue using this sample code, or would like to report a defect, you could [create a new Issue](https://github.com/messagemedia/messagemedia-ruby/issues/new) in Github or [Contact us](http://www.messagemedia.com.au/contact-us).
 
 ## Installation
-The messagemedia-soap Gem can be installed from Rubygems:
+The messagemedia-ruby Gem can be installed from Rubygems:
 
-    gem install messagemedia-soap
+    gem install messagemedia-ruby
 
 ## Usage
 The following actions have been implemented:
@@ -24,7 +24,7 @@ The following actions have been implemented:
 ### Initialise the client
 Initialise the client using your MessageMedia username and password:
 
-    require 'messagemedia-soap'
+    require 'messagemedia-ruby'
 
     client = Messagemedia::SOAP::Client.new(YOUR_USERNAME, YOUR_PASSWORD)
 
