@@ -25,4 +25,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'savon', '~> 2.4'
   spec.add_dependency 'test-unit'
 
+  spec.post_install_message = <<-MESSAGE
+ !    The 'messagemedia-soap' gem has been deprecated and has been replaced by 'messagemedia-ruby'.
+ !    See: https://rubygems.org/gems/messagemedia-ruby
+ !    And: https://github.com/messagemedia/messagemedia-ruby
+  MESSAGE
+
 end
