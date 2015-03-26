@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.version       = Messagemedia::SOAP::VERSION
   spec.authors       = ['Chris Hawkins', 'Tristan Penman']
   spec.email         = ['chris.hawkins@outlook.com', 'tristan.penman@messagemedia.com.au']
-  spec.summary       = 'Simple Ruby interface for the MessageMedia SOAP API'
-  spec.description   = 'Support for Ruby applications to integrate with the MessageMedia SOAP API'
+  spec.summary       = '[Deprecated] Simple Ruby interface for the MessageMedia SOAP API'
+  spec.description   = '[Deprecated] Support for Ruby applications to integrate with the MessageMedia SOAP API'
   spec.homepage      = 'http://www.messagemedia.com/'
   spec.license       = 'Apache'
   spec.files         = `git ls-files -z`.split("\x0")
