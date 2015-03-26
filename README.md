@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/messagemedia-soap.svg)](http://badge.fury.io/rb/messagemedia-soap)
+[![Gem Version](https://badge.fury.io/rb/messagemedia-ruby.svg)](http://badge.fury.io/rb/messagemedia-ruby)
 [![Build Status](https://travis-ci.org/messagemedia/messagemedia-ruby.svg)](https://travis-ci.org/messagemedia/messagemedia-ruby)
 
 # MessageMedia Ruby SDK
