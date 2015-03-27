@@ -1,2 +1,2 @@
 require 'rspec'
-require_relative '../lib/messagemedia-soap'
+require_relative '../lib/messagemedia-ruby'
