@@ -66,6 +66,9 @@ describe Messagemedia::SOAP::Client do
                       }
                   }
               }
+          },
+          {
+              :key_converter => :none
           })
       }
 
