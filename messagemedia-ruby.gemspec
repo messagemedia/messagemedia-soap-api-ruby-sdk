@@ -24,6 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rspec'
   spec.add_dependency 'savon', '~> 2.4'
   spec.add_dependency 'simplecov', '~> 0.9.2'
-  spec.add_dependency 'test-unit'
 
 end
