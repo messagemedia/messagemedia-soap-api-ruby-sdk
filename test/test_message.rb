@@ -1,7 +1,4 @@
-require 'test/unit'
-
-require_relative '../lib/messagemedia/soap/recipient'
-require_relative '../lib/messagemedia/soap/message'
+require 'test_helper'
 
 class TestMessage < Test::Unit::TestCase
 
