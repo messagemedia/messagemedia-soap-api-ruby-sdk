@@ -1,5 +1,7 @@
 require 'savon'
 
+require_relative 'message'
+
 module Messagemedia
   module SOAP
 
