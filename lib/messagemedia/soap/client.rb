@@ -28,8 +28,7 @@ module Messagemedia
         }
 
         # Create a new Savon-based SOAP client
-        @client = Savon.client(wsdl: SOAP_ENDPOINT, log: debug)
-
+        @client = Savon.client(wsdl: SOAP_ENDPOINT, log: debug, ssl_verify_mode: :none)
       end
 
       #
@@ -103,7 +102,6 @@ module Messagemedia
             :'api:authentication' => @credentials,
             :'api:requestBody' => {:'api:messages' => messages}
         }
-
         response = @client.call(:send_messages, message: body)
 
         response.body[:send_messages_response][:result]
@@ -232,6 +230,92 @@ module Messagemedia
         response = @client.call(:confirm_reports, message: body)
 
         response.body[:confirm_reports_response][:result][:'@confirmed']
+      end
+
+      #
+      # Return a list of blocked numbers.
+      #
+      # The number of returned items can be restricted using (max_recipients).
+      #
+      def get_blocked_numbers(max_recipients = nil)
+        body = {
+            :'api:authentication' => @credentials,
+            :'api:requestBody' => {}
+        }
+        unless max_recipients.nil?
+          body[:'api:requestBody'][:'api:maximumRecipients'] = max_recipients
+        end
+
+        response = @client.call(:get_blocked_numbers, message: body).body[:get_blocked_numbers_response][:result]
+        if response[:recipients]
+          response[:recipients] = response[:recipients][:recipient]
+        else
+          response[:recipients] = []
+        end
+
+        response
+      end
+
+      #
+      # Add numbers to the blocked list
+      #
+      # An array of numbers must be provided in (numbers).
+      #
+      def block_numbers(numbers)
+        body = create_recipients_body numbers
+
+        response = @client.call(:block_numbers, message: body)
+
+        response.body[:block_numbers_response][:result]
+      end
+
+      #
+      # Remove numbers from the blocked list.
+      #
+      # An array of numbers must be provided in (numbers).
+      # The numbers in this list must correspond to a number previously blocked
+      # using the block_numbers method.
+      #
+      def unblock_numbers(numbers)
+        body = create_recipients_body numbers
+
+        response = @client.call(:unblock_numbers, message: body)
+
+        response.body[:unblock_numbers_response][:result]
+      end
+
+      #
+      # Delete scheduled messages.
+      #
+      # An array of message ids must be provided in (message_ids).
+      # The ids in this array must correspond to messages previously sent
+      # using the send_messages method, where a scheduled date was set.
+      #
+      def delete_scheduled_messages(message_ids)
+        body = {
+            :'api:authentication' => @credentials,
+            :'api:requestBody' => {
+                :'api:messages' => {
+                    :'api:message' => message_ids.map do |id|
+                      {:'@messageId' => id}
+                    end
+                }
+            }
+        }
+
+        response = @client.call(:delete_scheduled_messages, message: body)
+        response.body[:delete_scheduled_messages_response][:result][:'@unscheduled']
+      end
+
+      def create_recipients_body(numbers)
+        {
+            :'api:authentication' => @credentials,
+            :'api:requestBody' => {
+                :'api:recipients' => {
+                    :'api:recipient' => numbers.each { |n| n }
+                }
+            }
+        }
       end
     end
   end
