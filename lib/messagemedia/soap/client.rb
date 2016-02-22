@@ -28,7 +28,7 @@ module Messagemedia
         }
 
         # Create a new Savon-based SOAP client
-        @client = Savon.client(wsdl: SOAP_ENDPOINT, log: debug, ssl_verify_mode: :none)
+        @client = Savon.client(wsdl: SOAP_ENDPOINT, log: debug)
       end
 
       #
