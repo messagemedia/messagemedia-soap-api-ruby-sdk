@@ -111,7 +111,7 @@ def check_and_confirm_replies
     replies[:replies].each do |reply|
       puts "Reply receipt id: #{reply[:'@receipt_id']}"
       puts "Reply uid: #{reply[:'@uid']}"
-      puts "Reply received now time: #{reply[:received]}"
+      puts "Reply received time: #{reply[:received]}"
       puts "Reply origin: #{reply[:origin]}"
       puts "Reply content: #{reply[:content]}"
       puts "Reply format: #{reply[:'@format']}"
