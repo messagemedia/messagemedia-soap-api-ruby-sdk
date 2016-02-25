@@ -10,7 +10,7 @@ module Messagemedia
     #
     class Message
       attr_accessor :sequence_number, :origin, :recipients, :content,
-                    :validity_period, :format, :delivery_report
+                    :validity_period, :format, :delivery_report, :scheduled
 
       #
       # Initialize an empty Message object
@@ -25,6 +25,7 @@ module Messagemedia
         @validity_period = 1
         @sequence_number = 0
         @format = FORMAT_SMS
+        @scheduled = nil
       end
 
       #
@@ -71,6 +72,9 @@ module Messagemedia
         end
         unless @origin.nil?
           hash[:'api:origin'] = @origin
+        end
+        unless @scheduled.nil?
+          hash[:'api:scheduled'] = @scheduled
         end
 
         hash

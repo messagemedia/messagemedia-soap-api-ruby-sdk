@@ -20,6 +20,10 @@ The following actions have been implemented:
   * checkReports
   * confirmReplies
   * confirmReports
+  * blockNumbers
+  * getBlockedNumbers
+  * unblockNumbers
+  * deleteScheduledMessages
 
 ### Initialise the client
 Initialise the client using your MessageMedia username and password:
