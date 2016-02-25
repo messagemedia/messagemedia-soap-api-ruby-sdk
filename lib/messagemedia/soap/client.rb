@@ -5,7 +5,7 @@ require_relative 'message'
 module Messagemedia
   module SOAP
 
-    SOAP_ENDPOINT = 'http://soap.dev.m4u.com.au/?wsdl'
+    SOAP_ENDPOINT = 'https://soap.m4u.com.au/?wsdl'
 
     #
     # This class is a light-weight wrapper around the MessageMedia SOAP API.
