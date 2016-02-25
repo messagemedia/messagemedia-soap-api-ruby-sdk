@@ -171,14 +171,14 @@ def block_unblock_numbers
 
   client = Messagemedia::SOAP::Client.new(USER_ID, PASSWORD)
 
-  numbers = %w(0412245559 0433399938)
+  numbers = %w(61491570156 61491570157)
   result = client.block_numbers numbers
 
   puts "Numbers blocked: #{result[:'@blocked']}"
   puts "Numbers failed: #{result[:'@failed']}"
 
   unless result[:errors].nil? then
-    puts result.errors
+    puts result[:errors]
   end
 
   puts "Retrieving blocked numbers..."

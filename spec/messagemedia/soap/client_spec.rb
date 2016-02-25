@@ -263,7 +263,9 @@ describe Messagemedia::SOAP::Client do
       expected_request_body = {
           :'api:authentication' => {
               :'api:userId' => 'username',
-              :'api:password' => 'password',
+              :'api:password' => 'password'
+          },
+          :'api:requestBody' => {
               :'api:recipients' => {
                   :'api:recipient' => numbers.each { |n| n }
               }
@@ -302,8 +304,8 @@ describe Messagemedia::SOAP::Client do
       result = client.block_numbers(numbers)
 
       expect(result).to_not be_nil
-      expect(result[:blocked]).to eq('2')
-      expect(result[:failed]).to eq('0')
+      expect(result[:@blocked]).to eq('2')
+      expect(result[:@failed]).to eq('0')
     end
 
   end
@@ -317,7 +319,9 @@ describe Messagemedia::SOAP::Client do
       expected_request_body = {
           :'api:authentication' => {
               :'api:userId' => 'username',
-              :'api:password' => 'password',
+              :'api:password' => 'password'
+          },
+          :'api:requestBody' => {
               :'api:recipients' => {
                   :'api:recipient' => numbers.each { |n| n }
               }
@@ -356,8 +360,8 @@ describe Messagemedia::SOAP::Client do
       result = client.unblock_numbers(numbers)
 
       expect(result).to_not be_nil
-      expect(result[:unblocked]).to eq('2')
-      expect(result[:failed]).to eq('0')
+      expect(result[:@unblocked]).to eq('2')
+      expect(result[:@failed]).to eq('0')
     end
 
   end
@@ -371,10 +375,13 @@ describe Messagemedia::SOAP::Client do
       expected_request_body = {
           :'api:authentication' => {
               :'api:userId' => 'username',
-              :'api:password' => 'password',
-              :'api:messages' => {
-                  :'api:message' => messageIds.each { |n| n }
-              }
+              :'api:password' => 'password'
+          },
+          :'api:requestBody' => {
+              :'api:messages' =>
+                  messageIds.map do |id|
+                    {:'api:message' => {:'@messageId' => id}}
+                  end
           }
       }
 
@@ -410,8 +417,8 @@ describe Messagemedia::SOAP::Client do
       result = client.delete_scheduled_messages(messageIds)
 
       expect(result).to_not be_nil
-      expect(result[:unscheduled]).to eq('2')
-      expect(result[:failed]).to eq('0')
+      expect(result[:@unscheduled]).to eq('2')
+      expect(result[:@failed]).to eq('0')
     end
 
   end

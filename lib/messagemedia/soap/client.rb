@@ -5,7 +5,7 @@ require_relative 'message'
 module Messagemedia
   module SOAP
 
-    SOAP_ENDPOINT = 'https://soap.m4u.com.au/?wsdl'
+    SOAP_ENDPOINT = 'http://soap.dev.m4u.com.au/?wsdl'
 
     #
     # This class is a light-weight wrapper around the MessageMedia SOAP API.
@@ -292,19 +292,28 @@ module Messagemedia
       # using the send_messages method, where a scheduled date was set.
       #
       def delete_scheduled_messages(message_ids)
+        # body = {
+        #     :'api:authentication' => @credentials,
+        #     :'api:requestBody' => {
+        #         :'api:messages' => {
+        #             :'api:message' => message_ids.map do |id|
+        #               {:'@messageId' => id}
+        #             end
+        #         }
+        #     }
+        # }
         body = {
             :'api:authentication' => @credentials,
             :'api:requestBody' => {
-                :'api:messages' => {
-                    :'api:message' => message_ids.map do |id|
-                      {:'@messageId' => id}
+                :'api:messages' =>
+                    message_ids.map do |id|
+                      {:'api:message' => {:'@messageId' => id}}
                     end
-                }
             }
         }
 
         response = @client.call(:delete_scheduled_messages, message: body)
-        response.body[:delete_scheduled_messages_response][:result][:'@unscheduled']
+        response.body[:delete_scheduled_messages_response][:result]
       end
 
       def create_recipients_body(numbers)
